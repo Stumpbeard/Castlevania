@@ -1,5 +1,6 @@
 #include "sta_level1.hpp"
 #include <iostream>
+#include <string>
 
 Sta_Level1::Sta_Level1(Game* game)
 {
@@ -19,6 +20,12 @@ Sta_Level1::Sta_Level1(Game* game)
     entities.insert(entities.end(), bounds.begin(), bounds.end());
 
     this->physics = new Physics(movables, bounds);
+
+    lucon.loadFromFile("lucon.ttf");
+    fps.setFont(lucon);
+    fps.setCharacterSize(12);
+    fps.setPosition(0, 0);
+    fps.setColor(sf::Color::White);
 }
 
 void Sta_Level1::update(float dt)
@@ -31,6 +38,10 @@ void Sta_Level1::update(float dt)
         }
 
     }
+
+    float time = 1.f/dt;
+    lastTime = dt;
+    fps.setString(std::to_string(time));
 
     for(int i = 0; i < movables.size(); ++i)
         movables[i]->update(dt);
@@ -46,6 +57,7 @@ void Sta_Level1::update(float dt)
         game->window.draw(movables[i]->sprite);
     /*for(int i = 0; i < bounds.size(); ++i)
         game->window.draw(bounds[i]->outline);*/
+    game->window.draw(fps);
     game->window.display();
 }
 
@@ -59,7 +71,7 @@ void Sta_Level1::handleInput(float dt)
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        mainView.move(64*dt, 0);
+        mainView.move(64/30, 0);
         while((mainView.getCenter().x+mainView.getSize().x/2 > background_.getGlobalBounds().width))
             mainView.move(-1, 0);
     }*/

@@ -6,8 +6,9 @@ Game::Game()
 {
     windowWidth = 256;
     windowHeight = 224;
-    window.create(sf::VideoMode(windowWidth*4, windowHeight*4), "Castlevania");
-    //window.setFramerateLimit(60);
+    window.create(sf::VideoMode(windowWidth, windowHeight), "Castlevania");
+    window.setVerticalSyncEnabled(false);
+    window.setFramerateLimit(60);
     player = new Simon();
 
 }

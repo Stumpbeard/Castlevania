@@ -99,11 +99,11 @@ void Simon::update(float dt)
     /*
     if(walkingLeft)
     {
-        sprite.move(-speed*dt, 0);
+        sprite.move(-speed/30, 0);
     }
     if(walkingRight)
     {
-        sprite.move(speed*dt, 0);
+        sprite.move(speed/30, 0);
     }*/
 
     updateSprite(dt);
@@ -114,7 +114,7 @@ void Simon::update(float dt)
 
 void Simon::updateSprite(float dt)
 {
-    frameTimer += dt*8;
+    frameTimer += 0.142;
     switch(currentState)
     {
     case fL:

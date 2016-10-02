@@ -21,6 +21,10 @@ public:
     std::vector<Block*> bounds;
     Physics* physics;
 
+    sf::Font lucon;
+    sf::Text fps;
+    float lastTime = 0;
+
 
 private:
     sf::Texture bgTex_;

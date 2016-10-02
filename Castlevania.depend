@@ -402,20 +402,21 @@
 1474488695 source:c:\projects\castlevania\game_states.cpp
 	"game_states.hpp"
 
-1475300656 source:c:\projects\castlevania\game.cpp
+1475386091 source:c:\projects\castlevania\game.cpp
 	"game.hpp"
 	"sta_level1.hpp"
 	<iostream>
 
-1474912921 c:\projects\castlevania\sta_level1.hpp
+1475385061 c:\projects\castlevania\sta_level1.hpp
 	"game_states.hpp"
 	"block.hpp"
 	"physics.hpp"
 	<vector>
 
-1475266693 source:c:\projects\castlevania\sta_level1.cpp
+1475386575 source:c:\projects\castlevania\sta_level1.cpp
 	"sta_level1.hpp"
 	<iostream>
+	<string>
 
 1475260469 c:\projects\castlevania\simon.hpp
 	"movables.hpp"
@@ -424,7 +425,7 @@
 1474907191 c:\projects\castlevania\entity.hpp
 	<SFML/Graphics.hpp>
 
-1475299913 source:c:\projects\castlevania\simon.cpp
+1475386575 source:c:\projects\castlevania\simon.cpp
 	"simon.hpp"
 	<iostream>
 	<math.h>
@@ -440,7 +441,7 @@
 	"movables.hpp"
 	"block.hpp"
 
-1475299881 source:c:\projects\castlevania\physics.cpp
+1475383931 source:c:\projects\castlevania\physics.cpp
 	"physics.hpp"
 	<iostream>
 	<math.h>
