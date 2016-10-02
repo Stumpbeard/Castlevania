@@ -23,23 +23,23 @@ void Physics::update(float dt)
     {
         if(movables[i]->walkingLeft)
         {
-            movables[i]->sprite.move(-movables[i]->speed/30, 0);
+            movables[i]->sprite.move(-movables[i]->speed/60, 0);
             for(int j = 0; j < bounds.size(); ++j)
             {
                 if(movables[i]->sprite.getGlobalBounds().intersects(bounds[j]->bounds))
                 {
-                    movables[i]->sprite.move(movables[i]->speed/30, 0);
+                    movables[i]->sprite.setPosition(bounds[j]->bounds.left+bounds[j]->bounds.width, movables[i]->sprite.getPosition().y);
                 }
             }
         }
         if(movables[i]->walkingRight)
         {
-            movables[i]->sprite.move(movables[i]->speed/30, 0);
+            movables[i]->sprite.move(movables[i]->speed/60, 0);
             for(int j = 0; j < bounds.size(); ++j)
             {
                 if(movables[i]->sprite.getGlobalBounds().intersects(bounds[j]->bounds))
                 {
-                    movables[i]->sprite.move(-movables[i]->speed/30, 0);
+                    movables[i]->sprite.setPosition(bounds[j]->bounds.left-movables[i]->sprite.getGlobalBounds().width, movables[i]->sprite.getPosition().y);
                 }
             }
         }
@@ -47,12 +47,7 @@ void Physics::update(float dt)
     // Apply gravity
     for(int i = 0; i < movables.size(); ++i)
     {
-        int movement = movables[i]->vertSpeed/30*1.3;
-        if(movement > 16)
-            movement = 16;
-        if(movement < -16)
-            movement = -16;
-        movables[i]->sprite.move(0, movement);
+        movables[i]->sprite.move(0, movables[i]->vertSpeed/60*1.3);
         if(movables[i]->vertSpeed >= 0)
         {
             for(int j = 0; j < bounds.size(); ++j)
@@ -67,7 +62,7 @@ void Physics::update(float dt)
                 }
             }
         }
-        movables[i]->vertSpeed += gravity/30*1.3;
+        movables[i]->vertSpeed += gravity/60*1.3;
         if(movables[i]->vertSpeed > gravity)
             movables[i]->vertSpeed = gravity;
     }

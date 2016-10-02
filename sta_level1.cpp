@@ -71,7 +71,7 @@ void Sta_Level1::handleInput(float dt)
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        mainView.move(64/30, 0);
+        mainView.move(64/60, 0);
         while((mainView.getCenter().x+mainView.getSize().x/2 > background_.getGlobalBounds().width))
             mainView.move(-1, 0);
     }*/
@@ -84,4 +84,5 @@ void Sta_Level1::centerView()
         mainView.setCenter(0+mainView.getSize().x/2, mainView.getCenter().y);
     if((mainView.getCenter().x+mainView.getSize().x/2 > background_.getGlobalBounds().width))
         mainView.setCenter(background_.getGlobalBounds().width-mainView.getSize().x/2, mainView.getCenter().y);
+    fps.setPosition(mainView.getCenter().x - game->windowWidth/2, mainView.getCenter().y - game->windowHeight/2);
 }

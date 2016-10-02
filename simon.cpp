@@ -99,11 +99,11 @@ void Simon::update(float dt)
     /*
     if(walkingLeft)
     {
-        sprite.move(-speed/30, 0);
+        sprite.move(-speed/60, 0);
     }
     if(walkingRight)
     {
-        sprite.move(speed/30, 0);
+        sprite.move(speed/60, 0);
     }*/
 
     updateSprite(dt);
