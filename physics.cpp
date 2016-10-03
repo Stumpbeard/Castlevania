@@ -28,7 +28,10 @@ void Physics::update(float dt)
             {
                 if(movables[i]->sprite.getGlobalBounds().intersects(bounds[j]->bounds))
                 {
-                    movables[i]->sprite.setPosition(bounds[j]->bounds.left+bounds[j]->bounds.width, movables[i]->sprite.getPosition().y);
+                    if(!movables[i]->jumping)
+                        movables[i]->sprite.setPosition(bounds[j]->bounds.left+bounds[j]->bounds.width, movables[i]->sprite.getPosition().y);
+                    else
+                        movables[i]->sprite.move(-movables[i]->speed/60, 0);
                 }
             }
         }
@@ -39,7 +42,10 @@ void Physics::update(float dt)
             {
                 if(movables[i]->sprite.getGlobalBounds().intersects(bounds[j]->bounds))
                 {
-                    movables[i]->sprite.setPosition(bounds[j]->bounds.left-movables[i]->sprite.getGlobalBounds().width, movables[i]->sprite.getPosition().y);
+                    if(!movables[i]->jumping)
+                        movables[i]->sprite.setPosition(bounds[j]->bounds.left-movables[i]->sprite.getGlobalBounds().width, movables[i]->sprite.getPosition().y);
+                    else
+                        movables[i]->sprite.move(-movables[i]->speed/60, 0);
                 }
             }
         }
