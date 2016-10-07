@@ -11,6 +11,7 @@ Simon::Simon()
     walking = 0;
     facing = 0;
     jumping = 0;
+    crouching = 0;
     currentState = fL;
     name = "Simon";
     frameTimer = 0;
@@ -53,17 +54,28 @@ Simon::Simon()
     holder.push_back(sf::IntRect(48, 40, 16, 24));
     stateRects.push_back(holder);
     holder.clear();
+
+    // cL
+    holder.push_back(sf::IntRect(48, 8, 16, 24));
+    stateRects.push_back(holder);
+    holder.clear();
+
+    // jR
+    holder.push_back(sf::IntRect(48, 40, 16, 24));
+    stateRects.push_back(holder);
+    holder.clear();
 }
 
 void Simon::update(float dt)
 {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !jumping)
+    // Walking
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !jumping && !crouching)
     {
         walking = 1;
         facing = 0;
         currentState = wL;
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !jumping)
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !jumping && !crouching)
     {
         walking = 1;
         facing = 1;
@@ -73,15 +85,32 @@ void Simon::update(float dt)
     {
         walking = 0;
     }
-    if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && facing == 0 && !jumping)
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !jumping && !crouching)
+    {
+        crouching = 1;
+        sprite.move(0, 8);
+        if(facing == 0)
+            currentState = cL;
+        if(facing == 1)
+            currentState = cR;
+        walking = 0;
+    } else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && crouching)
+    {
+        crouching = 0;
+    }
+
+    // Standing still
+    if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && facing == 0 && !jumping && !crouching)
     {
         currentState = fL;
     }
-    if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && facing == 1 && !jumping)
+    if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && facing == 1 && !jumping && !crouching)
     {
         currentState = fR;
     }
 
+    // Jumping
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !jumping && facing == 0)
     {
         vertSpeed = -128;
@@ -129,6 +158,12 @@ void Simon::updateSprite(float dt)
             sprite.setTextureRect(stateRects[jR][0]);
         else
             sprite.setTextureRect(stateRects[fR][0]);
+        break;
+    case cL:
+        sprite.setTextureRect(stateRects[cL][0]);
+        break;
+    case cR:
+        sprite.setTextureRect(stateRects[cR][0]);
         break;
     default:
         break;

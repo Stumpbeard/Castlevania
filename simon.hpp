@@ -6,7 +6,7 @@
 
 class Simon : public Movable
 {
-enum spriteStates {fL, fR, wL, wR, jL, jR};
+enum spriteStates {fL, fR, wL, wR, jL, jR, cL, cR};
 
 public:
     Simon();

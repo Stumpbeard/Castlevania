@@ -11,7 +11,7 @@ Sta_Level1::Sta_Level1(Game* game)
     mainView.reset(sf::FloatRect(0, 0, game->windowWidth, game->windowHeight));
 
     movables.push_back(game->player);
-    game->player->sprite.setPosition(16, 50-game->player->height);
+    game->player->sprite.setPosition(16, 168);
 
     bounds.push_back(new Block(0, 200, 2816, 24));
     bounds.push_back(new Block(688, 136, 48, 16));

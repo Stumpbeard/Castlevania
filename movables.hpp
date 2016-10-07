@@ -13,6 +13,7 @@ public:
     std::string name;
     bool walking;
     bool jumping;
+    bool crouching;
     int facing;
 
 
