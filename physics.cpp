@@ -31,7 +31,7 @@ void Physics::update(float dt)
                     if(!movables[i]->jumping)
                         movables[i]->sprite.setPosition(bounds[j]->bounds.left+bounds[j]->bounds.width, movables[i]->sprite.getPosition().y);
                     else
-                        movables[i]->sprite.move(-movables[i]->speed/60, 0);
+                        movables[i]->sprite.move(movables[i]->speed/60, 0);
                 }
             }
         }
