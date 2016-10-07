@@ -65,6 +65,10 @@ void Physics::update(float dt)
                         movables[i]->sprite.setPosition(movables[i]->sprite.getPosition().x, bounds[j]->bounds.top-movables[i]->height);
                         movables[i]->jumping = 0;
                     }
+                    else
+                    {
+                        movables[i]->walking = 0;
+                    }
                 }
             }
         }
