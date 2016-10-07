@@ -21,7 +21,7 @@ void Physics::update(float dt)
     // Move movables
     for(int i = 0; i < movables.size(); ++i)
     {
-        if(movables[i]->walkingLeft)
+        if(movables[i]->walking && movables[i]->facing == 0)
         {
             movables[i]->sprite.move(-movables[i]->speed/60, 0);
             for(int j = 0; j < bounds.size(); ++j)
@@ -35,7 +35,7 @@ void Physics::update(float dt)
                 }
             }
         }
-        if(movables[i]->walkingRight)
+        if(movables[i]->walking && movables[i]->facing == 1)
         {
             movables[i]->sprite.move(movables[i]->speed/60, 0);
             for(int j = 0; j < bounds.size(); ++j)

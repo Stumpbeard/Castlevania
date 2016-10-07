@@ -8,8 +8,8 @@ Simon::Simon()
     height = 32;
     speed = 64;
     vertSpeed = 0;
-    walkingLeft = 0;
-    walkingRight = 0;
+    walking = 0;
+    facing = 0;
     jumping = 0;
     currentState = fL;
     name = "Simon";
@@ -59,19 +59,19 @@ void Simon::update(float dt)
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !jumping)
     {
-        walkingLeft = 1;
+        walking = 1;
         facing = 0;
         currentState = wL;
-    } else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !jumping) {
-        walkingLeft = 0;
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !jumping)
     {
-        walkingRight = 1;
+        walking = 1;
         facing = 1;
         currentState = wR;
-    } else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !jumping){
-        walkingRight = 0;
+    }
+    if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !jumping)
+    {
+        walking = 0;
     }
     if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && facing == 0 && !jumping)
     {
@@ -94,17 +94,6 @@ void Simon::update(float dt)
         jumping = 1;
         currentState = jR;
     }
-
-
-    /*
-    if(walkingLeft)
-    {
-        sprite.move(-speed/60, 0);
-    }
-    if(walkingRight)
-    {
-        sprite.move(speed/60, 0);
-    }*/
 
     updateSprite(dt);
 

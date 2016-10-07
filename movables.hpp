@@ -11,8 +11,7 @@ public:
     float vertSpeed;
 
     std::string name;
-    bool walkingLeft;
-    bool walkingRight;
+    bool walking;
     bool jumping;
     int facing;
 
