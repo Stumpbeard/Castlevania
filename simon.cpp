@@ -86,14 +86,21 @@ void Simon::update(float dt)
         walking = 0;
     }
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !jumping && !crouching)
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !jumping)
     {
+        if(!crouching)
+            sprite.move(0, 8);
         crouching = 1;
-        sprite.move(0, 8);
-        if(facing == 0)
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || facing == 0)
+        {
+            facing = 0;
             currentState = cL;
-        if(facing == 1)
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || facing == 1)
+        {
+            facing = 1;
             currentState = cR;
+        }
         walking = 0;
     } else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && crouching)
     {
@@ -111,13 +118,13 @@ void Simon::update(float dt)
     }
 
     // Jumping
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !jumping && facing == 0)
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !jumping && facing == 0 && !crouching)
     {
         vertSpeed = -128;
         jumping = 1;
         currentState = jL;
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !jumping && facing == 1)
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !jumping && facing == 1 && !crouching)
     {
         vertSpeed = -128;
         jumping = 1;
